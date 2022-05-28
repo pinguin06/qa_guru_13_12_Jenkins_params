@@ -1,0 +1,19 @@
+plugins {
+    id 'java-library'
+}
+//перейти на сайт мавена
+repositories {
+    mavenCentral()
+}
+
+//найти там селенид и добавить в сборку
+dependencies {
+    testImplementation(
+            "com.codeborne:selenide:6.5.0",
+            "org.junit.jupiter:junit-jupiter:5.8.2"
+    )
+}
+
+tasks.withType(Test) {
+    useJUnitPlatform()
+}
