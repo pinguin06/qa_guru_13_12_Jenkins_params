@@ -1,0 +1,92 @@
+package tests;
+
+import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.commands.SelectOptionByValue;
+import com.codeborne.selenide.selector.ByText;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
+
+import java.io.File;
+
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selectors.*;
+import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.$;
+
+
+public class PracticeFormTest {
+
+    @BeforeAll
+    static void beforeAll() {
+        Configuration.baseUrl = "https://demoqa.com";
+        Configuration.browserSize = "1920x1080"; //задание размера окна
+    }
+
+    @Test
+    void successfulTest() {
+        String fname = "Olga";
+        String lname = "Romanshchak";
+        String email = "email@test.qa";
+
+        open("/automation-practice-form");
+        //команды, которые прячут рекламу от гугла и нижний блок
+        executeJavaScript("$('footer').remove()");
+        executeJavaScript("$('#fixedban').remove()");
+
+        //ВВодим значения в поля
+        $("[id=firstName]").setValue(fname);
+        $("[id=lastName]").setValue(lname);
+        $("[id=userEmail]").setValue(email);
+        $("[id=userNumber]").setValue("9291027606");
+
+        //Выбираем пол
+        $("#genterWrapper").$(byText("Female")).click();
+
+        //Вводим дату рождения
+        $("[id=dateOfBirthInput]").click();
+        $(".react-datepicker__month-select").click();
+        $(".react-datepicker__month-select").selectOption("June");
+        $(".react-datepicker__year-select").click();
+        $(".react-datepicker__year-select").selectOption("1990");
+        $(".react-datepicker__day--016").click();
+
+        //Выбираем предмет
+        $("#subjectsInput").sendKeys("M");
+        $(byText("Maths")).click();
+
+        //Выбираем хобби
+        $("#hobbiesWrapper").$(byText("Sports")).click();
+        $("#hobbiesWrapper").$(byText("Music")).click();
+
+        //Выбираем файл
+        $("[id=uploadPicture]").uploadFile(new File("src\\test\\files\\1.txt"));
+
+        //Адрес
+        $("[id=currentAddress]").setValue("Saint Petersburg");
+
+        //Штат / город
+        $("#state").click();
+        $(byText("Haryana")).click();
+
+        $("#city").click();
+        $(byText("Panipat")).click();
+
+
+        $("[id=submit]").click();
+
+        //проверка выводимого результата
+        $(".modal-content").shouldHave(
+                text(fname),
+                text(lname),
+                text(email),
+                text("Female"),
+                text("16 June,1990"),
+                text("Maths"),
+                text("Sports, Music"),
+                text("1.txt"),
+                text("Saint Petersburg"),
+                text("Haryana Panipat"));
+
+    }
+}

@@ -2,6 +2,8 @@ package tests;
 
 import org.junit.jupiter.api.*;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class JUnit5Examples {
 
     @BeforeAll
@@ -27,7 +29,7 @@ public class JUnit5Examples {
     @Test
     void secondTest() {
         System.out.println("========= Started secondTest");
-      //  assertEquals(2, 3);
+      assertEquals(2, 2);
     }
 
     @AfterEach
