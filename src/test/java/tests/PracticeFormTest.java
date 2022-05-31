@@ -35,16 +35,16 @@ public class PracticeFormTest {
         executeJavaScript("$('#fixedban').remove()");
 
         //ВВодим значения в поля
-        $("[id=firstName]").setValue(fname);
-        $("[id=lastName]").setValue(lname);
-        $("[id=userEmail]").setValue(email);
-        $("[id=userNumber]").setValue("9291027606");
+        $("#firstName").setValue(fname);
+        $("#lastName").setValue(lname);
+        $("#userEmail").setValue(email);
+        $("#userNumber").setValue("9291027606");
 
         //Выбираем пол
         $("#genterWrapper").$(byText("Female")).click();
 
         //Вводим дату рождения
-        $("[id=dateOfBirthInput]").click();
+        $("#dateOfBirthInput").click();
         $(".react-datepicker__month-select").click();
         $(".react-datepicker__month-select").selectOption("June");
         $(".react-datepicker__year-select").click();
@@ -60,10 +60,10 @@ public class PracticeFormTest {
         $("#hobbiesWrapper").$(byText("Music")).click();
 
         //Выбираем файл
-        $("[id=uploadPicture]").uploadFile(new File("src\\test\\files\\1.txt"));
+        $("#uploadPicture").uploadFile(new File("src\\test\\resources\\1.txt"));
 
         //Адрес
-        $("[id=currentAddress]").setValue("Saint Petersburg");
+        $("#currentAddress").setValue("Saint Petersburg");
 
         //Штат / город
         $("#state").click();
@@ -73,7 +73,7 @@ public class PracticeFormTest {
         $(byText("Panipat")).click();
 
 
-        $("[id=submit]").click();
+        $("#submit").click();
 
         //проверка выводимого результата
         $(".modal-content").shouldHave(
