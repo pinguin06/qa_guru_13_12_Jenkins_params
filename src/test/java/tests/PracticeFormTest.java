@@ -80,6 +80,7 @@ public class PracticeFormTest {
                 text(fname),
                 text(lname),
                 text(email),
+                text("9291027606"),
                 text("Female"),
                 text("16 June,1990"),
                 text("Maths"),
