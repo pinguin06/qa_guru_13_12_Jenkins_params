@@ -14,9 +14,9 @@ import static com.codeborne.selenide.Selenide.$;
     public class PracticeFormTestWithLocator extends TestBase {
         @Test
         void successfulTest() {
-            String fname = "Olga";
-            String lname = "Romanshchak";
-            String email = "email@test.qa";
+        String fname = "Olga";
+        String lname = "Romanshchak";
+        String email = "email@test.qa";
 
             open("/automation-practice-form");
             //команды, которые прячут рекламу от гугла и нижний блок

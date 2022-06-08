@@ -7,7 +7,6 @@ import static com.codeborne.selenide.Selenide.$;
 
 
     public class PracticeFormTestWithPageObjects extends TestBase {
-        //   RegistrationForm registrationForm = new RegistrationForm();
 
         @Test
         void successfulTest() {
@@ -27,12 +26,8 @@ import static com.codeborne.selenide.Selenide.$;
                     .uploadFile("src\\test\\resources\\1.txt")
                     .setAddress("Saint Petersburg")
                     .setState("Haryana")
-                    .setCity("Panipat");
-
-            $("#submit").click();
-
-            $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
-            registrationForm
+                    .setCity("Panipat")
+                    .clickSubmit()
                     .checkResult("Student Name", fname + " " + lname)
                     .checkResult("Student Email", email)
                     .checkResult("Date of Birth", "16 June,1990")

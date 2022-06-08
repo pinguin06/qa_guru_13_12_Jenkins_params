@@ -40,7 +40,7 @@ public class RegistrationForm {
     }
 
     public RegistrationForm setGender(String value) {
-        $("#genterWrapper").$(byText("Female")).click();
+        $("#genterWrapper").$(byText(value)).click();
 
         return this;
     }
@@ -94,8 +94,13 @@ public class RegistrationForm {
 
         return this;
     }
+    public RegistrationForm clickSubmit() {
+        $("#submit").click();
 
+        return this;
+    }
     public RegistrationForm checkResult(String key, String value) {
+        $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
         resultsTableComponent.checkResult(key, value);
 
         return this;
