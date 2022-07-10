@@ -7,6 +7,7 @@ import io.qameta.allure.selenide.AllureSelenide;
 import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Tag;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import config.CredentialsConfig;
 
@@ -14,6 +15,7 @@ public class TestBase {
     static CredentialsConfig config = ConfigFactory.create(CredentialsConfig.class);
     @BeforeAll
     static void setUp() {
+        String remoteURL = System.getProperty("remoteURL");
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
@@ -23,7 +25,7 @@ public class TestBase {
         Configuration.browserCapabilities = capabilities;
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.browserSize = "1920x1080";
-        Configuration.remote = String.format("https://%s:%s@%s", config.login(), config.password(), config.link());
+        Configuration.remote = String.format("https://%s:%s@%s", config.login(), config.password(), remoteURL );
     }
 
     @AfterEach
