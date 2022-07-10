@@ -5,7 +5,6 @@ import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
-import static java.lang.String.format;
 
 public class OwnerTests {
     CredentialsConfig config = ConfigFactory.create(CredentialsConfig.class);
@@ -15,12 +14,11 @@ public class OwnerTests {
     void someTest1() {
         String login = config.login();
         String password = config.password();
+        String link = config.link();
 
         System.out.println("Login: " + login);
         System.out.println("Password: " + password);
-
-        String message = format("I logged in as %s with password %s", login, password);
-        System.out.println("Message: " + message);
+        System.out.println("URL Selenoid: " + link);
     }
 
 }
