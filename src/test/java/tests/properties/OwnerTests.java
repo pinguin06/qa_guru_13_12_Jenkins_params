@@ -14,11 +14,13 @@ public class OwnerTests {
     void someTest1() {
         String login = config.login();
         String password = config.password();
-        String link = config.link();
+        String remoteURL = System.getProperty("remoteURL");
+
 
         System.out.println("Login: " + login);
         System.out.println("Password: " + password);
-        System.out.println("URL Selenoid: " + link);
+        System.out.println("Remote URL" + remoteURL);
+
     }
 
 }
